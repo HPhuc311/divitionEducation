@@ -125,7 +125,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Thêm Món Ăn</h5>
+          <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-user-alt"></i> ADD NEW PERSON</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -135,62 +135,73 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="foodID">ID</label>
-                <input type="text" class="form-control" id="foodID" name="maMon" placeholder="Enter your id..." value="" required>
+                <input type="text" class="form-control" id="foodID" name="ma" placeholder="Enter your id..." value="">
                 <div id="invalidID" class="invalid-feedback">
                 </div>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="tenMon">NAME</label>
-                <input type="text" class="form-control" id="tenMon" name="tenMon" placeholder="Enter your name..." required>
+                <input type="text" class="form-control" id="tenMon" name="ten" placeholder="Enter your name...">
                 <div id="invalidTen" class="invalid-form">
                 </div>
               </div>
               <div class="col-md-12 mb-3">
                 <label for="loai">KIND OF PERSON</label>
-                <select class="custom-select d-block w-100" id="loai" name="loaiMon" required>
+                <select class="custom-select d-block w-100" id="loai" name="loai">
                   <option value="">Choose the option</option>
                   <option value="loai1">Student</option>
                   <option value="loai2">Employee</option>
                   <option value="loai2">Customer</option>
                 </select>
-                <div id="invalidLoai" class="invalid-feedback">
-
+                <div id="invalidLoai" class="invalid-feedback"></div>
+              </div>
+              <div style="display: none;" class="col-md-12 mb-3">
+                <label for="math">Math</label>
+                <input type="text" class="form-control" id="giaMon" name="math" placeholder="Nhập giá" value="">
+                <div id="invalidM" class="invalid-feedback">
                 </div>
               </div>
-              <div class="col-md-6 mb-3">
-                <label for="giaMon">Giá Món</label>
-                <input type="text" class="form-control" id="giaMon" name="giaMon" placeholder="Nhập giá" value="" required>
-                <div id="invalidGia" class="invalid-feedback">
+              <div style="display: none;" class="col-md-12 mb-3">
+                <label for="physical">Physical</label>
+                <input type="text" class="form-control d-block w-100" id="physical" name="physical">
+                <div id="invalidP" class="invalid-feedback">
                 </div>
               </div>
-              <div class="col-md-6 mb-3">
-                <label for="khuyenMai">Khuyến Mãi (%)</label>
-                <select class="custom-select d-block w-100" id="khuyenMai" name="khuyenMai" required>
-                  <option value="">Chọn khuyến mãi</option>
-                  <option value="10">10</option>
-                  <option value="20">20</option>
-                </select>
-                <div id="invalidKM" class="invalid-feedback">
-
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="tinhTrang">Tình Trạng</label>
-                <select class="custom-select d-block w-100" id="tinhTrang" name="tinhTrang" required>
-                  <option value="">Chọn tình trạng</option>
-                  <option value="0">Hết</option>
-                  <option value="1">Còn</option>
-                  
-                </select>
-                <div id="invalidTT" class="invalid-feedback">
-
-                </div>
-              </div>              
+              <div style="display: none;" class="col-md-12 mb-3">
+                <label for="chemistry">Chemistry</label>
+                <input type="text" class="form-control d-block w-100" id="chemistry" name="chemistry">
+                <div id="invalidC" class="invalid-feedback"></div>
+              </div>                          
+              <div style="display: none;" class="col-md-12 mb-3">
+                <label for="numberofDays">Number of working days</label>
+                <input type="text" class="form-control d-block w-100" id="numberofDays" name="numberofDays">
+                <div id="invalidNumber" class="invalid-feedback"></div>
+              </div>                          
+              <div style="display: none;" class="col-md-12 mb-3">
+                <label for="dailyofWage">Daily wage</label>
+                <input type="text" class="form-control d-block w-100" id="dailyofWage" name="dailyofWage">
+                <div id="invalidDaily" class="invalid-feedback"></div>
+              </div>                          
+              <div style="display: none;" class="col-md-12 mb-3">
+                <label for="nameofCompany">Name of company</label>
+                <input type="text" class="form-control d-block w-100" id="nameofCompany" name="nameofCompany">
+                <div id="invalidName" class="invalid-feedback"></div>
+              </div>                          
+              <div style="display: none;" class="col-md-12 mb-3">
+                <label for="invoice">Invoice value</label>
+                <input type="text" class="form-control d-block w-100" id="invoice" name="invoice">
+                <div id="invalidI" class="invalid-feedback"></div>
+              </div>                          
+              <div style="display: none;" class="col-md-12 mb-3">
+                <label for="evaluate">Evaluate</label>
+                <input type="text" class="form-control d-block w-100" id="evaluate" name="evaluate">
+                <div id="invalidE" class="invalid-feedback"></div>
+              </div>                          
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnDong">Close</button>
           <button type="button" class="btn btn-warning" id="btnCapNhat">Cập Nhật</button>
           <button type="button" class="btn btn-warning" id="btnThemMon">Thêm</button>
         </div>
