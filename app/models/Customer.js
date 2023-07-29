@@ -1,11 +1,11 @@
-import Person from "./Person";
+import Person from "./Person.js";
 
 class Customer extends Person{
-    constructor(id, type, name, address, email, nameofCompany, billInvoice,evaluate) {
-        super(id, type, name, address, email);
-        this.nameofCompany = nameofCompany
-        this.billInvoice = billInvoice
-        this.evaluate = evaluate
+    constructor(id, name, address, email, companyName, orderValue, rating) {
+        super(id, name, address, email);
+        this.companyName = companyName
+        this.orderValue = orderValue
+        this.rating =  rating
     }
 }
 

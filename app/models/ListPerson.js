@@ -1,27 +1,30 @@
-class ListP {
-    constructor(){
-        this.empty = []
+class ListPerson {
+    constructor() {
+      this.personList = [];
     }
-
-    addUser(u){
-        this.empty.push(u)
+  
+    addPerson(person) {
+      this.personList.push(person);
     }
-    delUser(i){
-        this.empty = this.empty.filter(f => f.i !== i);
+  
+    deletePersonByCode(code) {
+      this.personList = this.personList.filter(person => person.code !== code);
     }
-    editUser(n,i){
-        const index = this.empty.findIndex(f => f.i === i);
-        this.empty[index] = n;
+  
+    updatePersonByCode(code, updatedPerson) {
+      const index = this.personList.findIndex(person => person.code === code);
+      if (index !== -1) {
+        this.personList[index] = updatedPerson;
+      }
     }
-
-    sortByName() {
-        this.empty.sort((a, b) => a.name.localeCompare(b.name));
+  
+    sortByFullName() {
+      this.personList.sort((a, b) => a.name.localeCompare(b.name));
     }
-    
+  
     filterByType(type) {
-        return this.empty.filter(empty => empty instanceof type);
+      return this.personList.filter(person => person instanceof type);
     }
+  }
 
-}
-
-export default ListP
+  export default ListPerson

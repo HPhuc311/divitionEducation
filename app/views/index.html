@@ -91,17 +91,18 @@
           </div>
         </div>
         
-        <div class="table-responsive foodTable">
+        <div class="table-responsive listTable">
           <table class="table table-striped table-sm">
             <thead>
               <tr class="bg-primary text-white">
                 <th>ID</th>
+                <th>Type</th>
                 <th>Name</th>
                 <th>Address</th>
                 <th>Email</th>
               </tr>
             </thead>
-            <tbody id="tbodyFood">
+            <tbody id="tbodyList">
              
             </tbody>
           </table>
@@ -135,66 +136,78 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="foodID">ID</label>
-                <input type="text" class="form-control" id="foodID" name="ma" placeholder="Enter your id..." value="">
+                <input type="text" class="form-control infor" id="id" name="ma" placeholder="Enter your id..." value="">
                 <div id="invalidID" class="invalid-feedback">
                 </div>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="tenMon">NAME</label>
-                <input type="text" class="form-control" id="tenMon" name="ten" placeholder="Enter your name...">
+                <input type="text" class="form-control infor" id="name" name="name" placeholder="Enter your name...">
+                <div id="invalidTen" class="invalid-form">
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="address">ADDRESS</label>
+                <input type="text" class="form-control infor" id="address" name="address" placeholder="Enter your address...">
+                <div id="invalidTen" class="invalid-form">
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="email">EMAIL</label>
+                <input type="email" class="form-control infor" id="email" name="email" placeholder="Enter your email...">
                 <div id="invalidTen" class="invalid-form">
                 </div>
               </div>
               <div class="col-md-12 mb-3">
                 <label for="loai">KIND OF PERSON</label>
                 <select class="custom-select d-block w-100" id="loai" name="loai">
-                  <option value="">Choose the option</option>
-                  <option value="loai1">Student</option>
-                  <option value="loai2">Employee</option>
-                  <option value="loai2">Customer</option>
+                  <option>Choose the option</option>
+                  <option value="1">Student</option>
+                  <option value="2">Employee</option>
+                  <option value="3">Customer</option>
                 </select>
                 <div id="invalidLoai" class="invalid-feedback"></div>
               </div>
-              <div style="display: none;" class="col-md-12 mb-3">
+              <div id="math" class="col-md-12 mb-3 inputField">
                 <label for="math">Math</label>
-                <input type="text" class="form-control" id="giaMon" name="math" placeholder="Nhập giá" value="">
+                <input id="input1" type="text" class="form-control d-block w-100 student"  name="math" value="">
                 <div id="invalidM" class="invalid-feedback">
                 </div>
               </div>
-              <div style="display: none;" class="col-md-12 mb-3">
+              <div id="physical" class="col-md-12 mb-3 inputField">
                 <label for="physical">Physical</label>
-                <input type="text" class="form-control d-block w-100" id="physical" name="physical">
+                <input id="input2" type="text" class="form-control d-block w-100 student"  name="physical">
                 <div id="invalidP" class="invalid-feedback">
                 </div>
               </div>
-              <div style="display: none;" class="col-md-12 mb-3">
+              <div id="chemistry" class="col-md-12 mb-3 inputField">
                 <label for="chemistry">Chemistry</label>
-                <input type="text" class="form-control d-block w-100" id="chemistry" name="chemistry">
+                <input id="input3" type="text" class="form-control d-block w-100 student"  name="chemistry">
                 <div id="invalidC" class="invalid-feedback"></div>
               </div>                          
-              <div style="display: none;" class="col-md-12 mb-3">
+              <div id="numberofDays" class="col-md-12 mb-3 inputField">
                 <label for="numberofDays">Number of working days</label>
-                <input type="text" class="form-control d-block w-100" id="numberofDays" name="numberofDays">
+                <input id="input4" type="text" class="form-control d-block w-100 employee"  name="numberofDays">
                 <div id="invalidNumber" class="invalid-feedback"></div>
               </div>                          
-              <div style="display: none;" class="col-md-12 mb-3">
+              <div id="dailyofWage" class="col-md-12 mb-3 inputField">
                 <label for="dailyofWage">Daily wage</label>
-                <input type="text" class="form-control d-block w-100" id="dailyofWage" name="dailyofWage">
+                <input id="input5" type="text" class="form-control d-block w-100 employee"  name="dailyofWage">
                 <div id="invalidDaily" class="invalid-feedback"></div>
               </div>                          
-              <div style="display: none;" class="col-md-12 mb-3">
+              <div id="nameofCompany" class="col-md-12 mb-3 inputField">
                 <label for="nameofCompany">Name of company</label>
-                <input type="text" class="form-control d-block w-100" id="nameofCompany" name="nameofCompany">
+                <input id="input6" type="text" class="form-control d-block w-100 employee"  name="nameofCompany">
                 <div id="invalidName" class="invalid-feedback"></div>
               </div>                          
-              <div style="display: none;" class="col-md-12 mb-3">
+              <div  id="invoice" class="col-md-12 mb-3 inputField">
                 <label for="invoice">Invoice value</label>
-                <input type="text" class="form-control d-block w-100" id="invoice" name="invoice">
+                <input id="input7" type="text" class="form-control d-block w-100 customer" name="invoice">
                 <div id="invalidI" class="invalid-feedback"></div>
               </div>                          
-              <div style="display: none;" class="col-md-12 mb-3">
+              <div id="evaluate" class="col-md-12 mb-3 inputField">
                 <label for="evaluate">Evaluate</label>
-                <input type="text" class="form-control d-block w-100" id="evaluate" name="evaluate">
+                <input id="input8" type="text" class="form-control d-block w-100 customer"  name="evaluate">
                 <div id="invalidE" class="invalid-feedback"></div>
               </div>                          
             </div>
@@ -203,7 +216,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnDong">Close</button>
           <button type="button" class="btn btn-warning" id="btnCapNhat">Cập Nhật</button>
-          <button type="button" class="btn btn-warning" id="btnThemMon">Thêm</button>
+          <button type="button" class="btn btn-warning" id="btnThemPerson">Thêm</button>
         </div>
       </div>
     </div>
@@ -212,9 +225,7 @@
   <script src="../../assets/lib/js/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-  <!-- <script type="module" src="../controllers/v2/main-v2.js"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="../../assets/js/main.js"></script>
+  <script type="module" src="../../assets/js/main.js"></script>
 </body>
 
 </html>

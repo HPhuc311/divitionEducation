@@ -1,10 +1,10 @@
 import Person from './Person.js';
 
 class Employee extends Person {
-    constructor(id, name, address, email, numberOfWorkingDays, dailyWage){
-        super(id, type, name, address, email, userType);
-        this.numberOfWorkingDays = numberOfWorkingDays;
-        this.dailyWage = dailyWage
+    constructor(id, name, address, email,  workDays, dailySalary){
+        super(id, name, address, email);
+        this.workDays = workDays;
+        this.dailySalary = dailySalary
     }
 
     calSalary(){
