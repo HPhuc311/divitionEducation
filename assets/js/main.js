@@ -2,13 +2,13 @@ import Customer from '../../app/models/Customer.js'
 import Employee from '../../app/models/Employee.js'
 import Student from '../../app/models/Student.js'
 import ListPerson from '../../app/models/ListPerson.js'
+import Person from '../../app/models/Person.js'
 // ----------------------------------------------------------------
 const getElement = (element) => document.querySelector(element)
 
+const personList = new ListPerson()
 
 let selectedValue;
-
-
 const getChoose = () => {
 
     const l = getElement('#loai')
@@ -53,12 +53,12 @@ getElement('#btnThem').onclick = () => {
 
 getElement('#btnThemPerson').onclick = () => {
     addUser()
+    setLocalStorages(personList.personList)
     displayUsers()
 
 }
 
 // ====================== ADD USER =========================
-const personList = new ListPerson()
 
 const addUser = () => {
     const id = getElement('#id').value
@@ -115,9 +115,10 @@ const displayUsers = (users = personList.personList) => {
                     <td>${user.name}</td>
                     <td>${user.address}</td>
                     <td>${user.email}</td>
-                    <td><button class='btn btn-success' onclick='deleteUser(${user.id})'>DELETE</button></td>
+                    <td><button class='btn btn-success'>DELETE</button></td>
+                    <td><button class='btn btn-primary'>EDIT</button></td>
                 </tr>
-          `;
+                `
         } else if (user instanceof Employee) {
           return `
                 <tr>
@@ -126,9 +127,10 @@ const displayUsers = (users = personList.personList) => {
                     <td>${user.name}</td>
                     <td>${user.address}</td>
                     <td>${user.email}</td>
-                    <td><button class='btn btn-success' onclick='deleteUser(${user.id})'>DELETE</button></td>
+                    <td><button class='btn btn-success'>DELETE</button></td>
+                    <td><button class='btn btn-primary'>EDIT</button></td>
                 </tr>
-        `;
+                `
         } else if (user instanceof Customer) {
           return ` 
                 <tr>
@@ -137,9 +139,10 @@ const displayUsers = (users = personList.personList) => {
                     <td>${user.name}</td>
                     <td>${user.address}</td>
                     <td>${user.email}</td>
-                    <td><button class='btn btn-success' onclick='deleteUser(${user.id})'>DELETE</button></td>
+                    <td><button class='btn btn-success'>DELETE</button></td>
+                    <td><button class='btn btn-primary'>EDIT</button></td>
                 </tr>
-            `;
+                `
         }
       });   
 
@@ -164,5 +167,31 @@ const displayUsers = (users = personList.personList) => {
 
 const deleteUser = (id) => {
     personList.deletePerson(id);
+
     displayUsers();
-  }
+
+}
+
+
+// ====================LOCAL STORAGE================
+// lưu thông tin nhân viên vào local storage:
+function setLocalStorages(v) {
+    localStorage.setItem('personList', JSON.stringify(v));
+}
+// đưa danh sách sinh viên từ local lên lại UI
+const getLocalStorage = () => {
+    // B1: lấy data từ local
+    const data = localStorage.getItem('personList') ? JSON.parse(localStorage.getItem('personList')) : [];
+    personList.personList = data.map(p =>{
+            const {id,name, address, email, math, physical, chemistry,  workDays, dailySalary, companyName, orderValue, rating} = p
+            if(p.type === "Student"){
+                return new Student(id, 'Student', name, address, email, math, physical, chemistry)
+            }else if(p.type === "Employee"){
+                return new Employee(id, 'Employee' ,name, address, email, workDays, dailySalary)
+            }else if(p.type === "Customer"){
+                return new Customer(id, 'Customer' ,name, address, email, companyName, orderValue, rating)
+            }
+        });
+        displayUsers()
+}
+getLocalStorage()
