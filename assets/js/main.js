@@ -115,7 +115,7 @@ const displayUsers = (users = personList.personList) => {
                     <td>${user.name}</td>
                     <td>${user.address}</td>
                     <td>${user.email}</td>
-                    <td><button class='btn btn-success' onclick='deleteUser()'>DELETE</button></td>
+                    <td><button class='btn btn-success' onclick='deleteUser(${user.id})'>DELETE</button></td>
                 </tr>
           `;
         } else if (user instanceof Employee) {
@@ -126,7 +126,7 @@ const displayUsers = (users = personList.personList) => {
                     <td>${user.name}</td>
                     <td>${user.address}</td>
                     <td>${user.email}</td>
-                    <td><button class='btn btn-success' onclick='deleteUser()'>DELETE</button></td>
+                    <td><button class='btn btn-success' onclick='deleteUser(${user.id})'>DELETE</button></td>
                 </tr>
         `;
         } else if (user instanceof Customer) {
@@ -137,7 +137,7 @@ const displayUsers = (users = personList.personList) => {
                     <td>${user.name}</td>
                     <td>${user.address}</td>
                     <td>${user.email}</td>
-                    <td><button class='btn btn-success' onclick='deleteUser()'>DELETE</button></td>
+                    <td><button class='btn btn-success' onclick='deleteUser(${user.id})'>DELETE</button></td>
                 </tr>
             `;
         }
