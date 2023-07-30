@@ -2,11 +2,18 @@ import Customer from '../../app/models/Customer.js'
 import Employee from '../../app/models/Employee.js'
 import Student from '../../app/models/Student.js'
 import ListPerson from '../../app/models/ListPerson.js'
-import Person from '../../app/models/Person.js'
 // ----------------------------------------------------------------
 const getElement = (element) => document.querySelector(element)
 
-const personList = new ListPerson()
+const list = new ListPerson()
+
+// Ẩn tất các ô
+const hideAllInputFields = () => {
+    const inputs = document.querySelectorAll('.inputField');
+    inputs.forEach(input => {
+        input.style.display = 'none';
+    });
+}
 
 let selectedValue;
 const getChoose = () => {
@@ -27,54 +34,37 @@ const getChoose = () => {
             showInputFields('#nameofCompany')
             showInputFields('#invoice')
             showInputFields('#evaluate')
+        }else{
+            hideAllInputFields()
         }
     })
-    // Ẩn tất các ô
-    const hideAllInputFields = () => {
-        const inputs = document.querySelectorAll('.inputField');
-        inputs.forEach(input => {
-            input.style.display = 'none';
-        });
-    }
+    
     const showInputFields = (num) => {
         getElement(num).style.display = 'block'
     }
 
-    return hideAllInputFields()
 }
-
-
 getChoose()
 // ====================== EVENT CLICK =========================
 getElement('#btnThem').onclick = () => {
     getElement('#btnCapNhat').style.display = 'none'
+    hideAllInputFields()
 
 }
-
 getElement('#btnThemPerson').onclick = () => {
     addUser()
-    setLocalStorages(personList.personList)
+    setLocalStorages(list.personList)
     displayUsers()
-
+    getElement('#listForm').reset()
 }
-
 // ====================== ADD USER =========================
-
 const addUser = () => {
     const id = getElement('#id').value
     const name = getElement('#name').value
     const address = getElement('#address').value
     const email = getElement('#email').value
     const type = getElement('#loai')
-
     let newUser = {};
-
-    // displayUsers()
-
-    // type.addEventListener('change' , (event) =>{
-    //     const selectedValue = event.target.value;
-    //     console.log("selectedValue", selectedValue);
-
     if (selectedValue === "Student") {
         const math = getElement('#input1').value
         const physical = getElement('#input2').value
@@ -82,31 +72,27 @@ const addUser = () => {
         newUser = new Student(id, 'Student', name, address, email, math, physical, chemistry)
         console.log(newUser)
     } else if (selectedValue === "Employee") {
-        // console.log(124
+    
         const workDays = getElement('#input4').value
         const dailySalary = getElement('#input5').value
         newUser = new Employee(id, 'Employee' ,name, address, email, workDays, dailySalary)
         console.log(newUser)
-        // console.log("newUser", newUser);
     } else if (selectedValue === "Customer") {
-        // console.log(126)
+        
         const companyName = getElement('#input6').value
         const orderValue = getElement('#input7').value
         const rating = getElement('#input8').value
         newUser = new Customer(id, 'Customer' ,name, address, email, companyName, orderValue, rating)
         console.log(newUser)
-        // console.log("newUser", newUser);
     }
-    // })
-    personList.addPerson(newUser);
-
+    list.addPerson(newUser);
 }
 // ====================== RENDER RA UI =========================
-const displayUsers = (users = personList.personList) => {
+const displayUsers = (users = list.personList) => {
     const userListElement = getElement("#tbodyList");
     userListElement.innerHTML = "";
 
-    const userElements = users.map(user => {
+    const userElements = users.map((user) => {
         if (user instanceof Student) {
           return `
                 <tr>
@@ -115,8 +101,8 @@ const displayUsers = (users = personList.personList) => {
                     <td>${user.name}</td>
                     <td>${user.address}</td>
                     <td>${user.email}</td>
-                    <td><button class='btn btn-success'>DELETE</button></td>
-                    <td><button class='btn btn-primary'>EDIT</button></td>
+                    <td><button class='btn btn-success' target='${user.id}'>DELETE</button></td>
+                    <td><button class='btn btn-primary' data-toggle="modal" data-target="#exampleModal">EDIT</button></td>
                 </tr>
                 `
         } else if (user instanceof Employee) {
@@ -127,8 +113,8 @@ const displayUsers = (users = personList.personList) => {
                     <td>${user.name}</td>
                     <td>${user.address}</td>
                     <td>${user.email}</td>
-                    <td><button class='btn btn-success'>DELETE</button></td>
-                    <td><button class='btn btn-primary'>EDIT</button></td>
+                    <td><button class='btn btn-success' target='${user.id}'>DELETE</button></td>
+                    <td><button class='btn btn-primary' data-toggle="modal" data-target="#exampleModal">EDIT</button></td>
                 </tr>
                 `
         } else if (user instanceof Customer) {
@@ -139,8 +125,8 @@ const displayUsers = (users = personList.personList) => {
                     <td>${user.name}</td>
                     <td>${user.address}</td>
                     <td>${user.email}</td>
-                    <td><button class='btn btn-success'>DELETE</button></td>
-                    <td><button class='btn btn-primary'>EDIT</button></td>
+                    <td><button class='btn btn-success' target='${user.id}'>DELETE</button></td>
+                    <td><button class='btn btn-primary' data-edit="${user.id}" data-toggle="modal" data-target="#exampleModal">EDIT</button></td>
                 </tr>
                 `
         }
@@ -148,28 +134,26 @@ const displayUsers = (users = personList.personList) => {
 
       userListElement.innerHTML = userElements.join("");
 }
-// for (const user of users) {
-//     const li = document.createElement("li");
-
-//     if (user instanceof Student) {
-//         li.textContent = `Học viên: ${user.name}, Điểm TB: ${user.calNumber()}`;
-//     } else if (user instanceof Employee) {
-//         li.textContent = `Nhân viên: ${user.name}, Lương: ${user.calSalary()}`;
-//     } else if (user instanceof Customer) {
-//         li.textContent = `Khách hàng: ${user.name}, Đánh giá: ${user.rating}`;
-//     }
-
-//     userListElement.appendChild(li);
-// }
-
 // ====================== DELETE PERSON =========================
 
+getElement('#tbodyList').onclick = e =>{
+    const b = e.target.getAttribute("target");
+    HandaleDelete(b)
+    const c = e.target.getAttribute("data-edit")
+    const d = e.target.getAttribute("data-user")
+    HandleEdit(c,d)
+}
 
-const deleteUser = (id) => {
-    personList.deletePerson(id);
-
+const HandaleDelete = (id) => {
+    list.deletePersonByCode(id);
+    setLocalStorages(list.personList)
     displayUsers();
+}
 
+const HandleEdit = (n,e) => {
+    list.updatePersonByCode(n,e);
+    setLocalStorages(list.personList);
+    displayUsers();
 }
 
 
@@ -182,7 +166,7 @@ function setLocalStorages(v) {
 const getLocalStorage = () => {
     // B1: lấy data từ local
     const data = localStorage.getItem('personList') ? JSON.parse(localStorage.getItem('personList')) : [];
-    personList.personList = data.map(p =>{
+    list.personList = data.map(p =>{
             const {id,name, address, email, math, physical, chemistry,  workDays, dailySalary, companyName, orderValue, rating} = p
             if(p.type === "Student"){
                 return new Student(id, 'Student', name, address, email, math, physical, chemistry)
@@ -195,3 +179,5 @@ const getLocalStorage = () => {
         displayUsers()
 }
 getLocalStorage()
+
+// ===================Update User=========================

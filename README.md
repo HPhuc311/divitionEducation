@@ -10,9 +10,13 @@
 ## Chương trình cho phép thực hiện:
 - Thêm người dùng vào danh sách ( done )
 - Lưu vào local storge (done)
-- Xóa 1 người dùng khỏi danh sách theo mã 
-- Cập nhật thông tin người dùng
+- Xóa 1 người dùng khỏi danh sách theo mã (done)
+- Cập nhật thông tin người dùng ()
 - Sắp xếp danh sách theo thứ tự họ tên
 - Lọc danh sách người dùng theo loại người dùng
 - Người dùng học viên sẽ có tính năng tính điểm trung bình
 - Người dùng Giảng viên sẽ có tính năng tính lương
+
+
+
+

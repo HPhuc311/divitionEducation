@@ -8,11 +8,11 @@ class ListPerson {
     }
   
     deletePersonByCode(code) {
-      this.personList = this.personList.filter(person => person.code !== code);
+      this.personList = this.personList.filter(person => person.id !== code);
     }
   
     updatePersonByCode(code, updatedPerson) {
-      const index = this.personList.findIndex(person => person.code === code);
+      const index = this.personList.findIndex(person => person.id === code);
       if (index !== -1) {
         this.personList[index] = updatedPerson;
       }
